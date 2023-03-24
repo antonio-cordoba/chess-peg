@@ -1,0 +1,73 @@
+
+
+.main-board {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.4rem;
+  width: 100vw;
+  height: 100vh;
+}
+
+.current-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 55%;
+}
+
+.description {
+  font-size: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  background-color: aliceblue;
+  justify-content: flex-start;
+  margin: 1em;
+  padding: 1em;
+}
+
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 1em 1em;
+}
+
+.game-string-row {
+  display: flex;
+  align-items: center;
+  padding: .2em;
+  margin: .3em .3em .3em 1em;
+}
+
+.game-string {
+  font-family: consolas, Courier New;
+  padding: .2em;
+  font-size: 1em;
+  margin: 0 .4em;
+}
+
+.levels {
+  margin: 0 .4em;
+  padding: .2em;
+  font-size: 1em;
+}
+
+@media (orientation: portrait) {
+  
+  .main-board {
+    flex-direction: column;
+    height: unset;
+  }
+  
+  .current-area {
+    width: 100vw;
+    height: auto;
+  }
+
+ .description {
+    width: 92vw;
+    height: auto;
+  }
+}
+
+
