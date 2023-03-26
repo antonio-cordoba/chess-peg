@@ -13,9 +13,9 @@ export interface moveStep {
 })
 export class PlayBoardComponent implements OnInit {
 
-  gameState: string[][];
-  _gameString: string;
-  @Input() set gameString( val: string) {
+  gameState: string[][] = [];
+  _gameString: string = '';
+  @Input() set gameString(val: string) {
     this.setGameState(val);
   };
 
@@ -37,7 +37,7 @@ export class PlayBoardComponent implements OnInit {
     }
   }
 
-  checkDrop(ev) {
+  checkDrop(ev: any) {
     const mFrom = ev.previousContainer.element.nativeElement.id.split('-');
     const mTo = ev.container.element.nativeElement.id.split('-');
     this.makeMove(
@@ -66,7 +66,7 @@ export class PlayBoardComponent implements OnInit {
     }
   }
 
-  isValidMove(pieceMoved, from, pieceTaken, to) {
+  isValidMove(pieceMoved: string, from: moveStep, pieceTaken: string, to: moveStep) {
     // Make sure we are capturing a piece and not a moving into empty spot
     let validMove = pieceTaken !== '.';
 
@@ -97,7 +97,7 @@ export class PlayBoardComponent implements OnInit {
   }
 
   // Make sure there are no pieces blocking the path between piece moved and piece captured
-  isPathClear(from, to, rowDiff, colDiff) {
+  isPathClear(from: moveStep, to: moveStep, rowDiff: number, colDiff: number) {
     let pathClear = true;
     // If move is horizontal (R or Q)
     if (rowDiff === 0 && colDiff > 1) {

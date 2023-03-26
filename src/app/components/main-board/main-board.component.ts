@@ -14,7 +14,7 @@ export class MainBoardComponent implements OnInit {
 
   currentIndex = -1;
   nextIndex = -1;
-  currentGameString: string;
+  currentGameString: string = '';
   levels: GameLevel[] = [];
 
 
@@ -29,7 +29,7 @@ export class MainBoardComponent implements OnInit {
       this.levels[0].gameString;
   }
 
-  resetGameString(ev) {
+  resetGameString(ev: any) {
     this.currentGameString = '';
     setTimeout(() => { 
       this.currentGameString = ev;
@@ -37,7 +37,7 @@ export class MainBoardComponent implements OnInit {
     });
   }
 
-  nextGameString(ev) {
+  nextGameString(ev: any) {
     const refIndex = this.levels.findIndex(r => r.gameString === ev);
     if (refIndex !== -1) {
         this.currentGameString =
@@ -47,7 +47,7 @@ export class MainBoardComponent implements OnInit {
     }
   }
 
-  previousGameString(ev) {
+  previousGameString(ev: any) {
     const refIndex = this.levels.findIndex(r => r.gameString === ev);
     if (refIndex !== -1) {
         this.currentGameString =
@@ -57,7 +57,7 @@ export class MainBoardComponent implements OnInit {
     }
   }
 
-  changeGame(ev) {
+  changeGame(ev: any) {
     this.currentGameString = ev.target.value;
     this.saveGame();
   }
