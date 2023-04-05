@@ -44,6 +44,7 @@ export class MainBoardComponent implements OnInit {
         refIndex === this.levels.length-1 ?
         this.levels[0].gameString:
         this.levels[refIndex+1].gameString;
+        this.saveGame();
     }
   }
 
@@ -54,6 +55,7 @@ export class MainBoardComponent implements OnInit {
         refIndex === 0 ?
         this.levels[this.levels.length-1].gameString:
         this.levels[refIndex-1].gameString;
+        this.saveGame();
     }
   }
 
