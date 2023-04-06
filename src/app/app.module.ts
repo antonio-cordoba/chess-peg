@@ -17,6 +17,7 @@ import { KnightComponent } from './components/pieces/knight/knight.component';
 import { RookComponent } from './components/pieces/rook/rook.component';
 import { PlayBoardComponent } from './components/play-board/play-board.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   imports: [ 
@@ -26,6 +27,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     DragDropModule,
     MatIconModule,
     MatButtonModule,
+    MatFormFieldModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

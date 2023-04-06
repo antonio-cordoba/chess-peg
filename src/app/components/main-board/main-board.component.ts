@@ -16,6 +16,7 @@ export class MainBoardComponent implements OnInit {
   nextIndex = -1;
   currentGameString: string = '';
   levels: GameLevel[] = [];
+  options: any = {};
 
 
   constructor() { }
