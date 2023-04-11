@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1680886316079,
+  "timestamp": 1681182335549,
   "index": "/chess-peg/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,11 @@
       "urls": [
         "/chess-peg/favicon.ico",
         "/chess-peg/index.html",
-        "/chess-peg/main.e2f9acfdd899f80d.js",
+        "/chess-peg/main.b74a5a3d16a8abc6.js",
         "/chess-peg/manifest.webmanifest",
         "/chess-peg/polyfills.6d3b9cbe5ce6ffd6.js",
         "/chess-peg/runtime.fda353acfa0aaad7.js",
-        "/chess-peg/styles.2db5bcc2b79e9ce4.css"
+        "/chess-peg/styles.f431507478bc7ec4.css"
       ],
       "patterns": []
     },
@@ -54,12 +54,12 @@
     "/chess-peg/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/chess-peg/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/chess-peg/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/chess-peg/index.html": "c17150b8300cc9a7048cb28ab1734c92b8146be1",
-    "/chess-peg/main.e2f9acfdd899f80d.js": "dbb8c88dcdd3694a1d7e577438f39e33c5cf6094",
-    "/chess-peg/manifest.webmanifest": "627972ff6bfc32519d9395f409442dfb4fd40250",
+    "/chess-peg/index.html": "a3818cec13b0300057922182d277c7747459c0d3",
+    "/chess-peg/main.b74a5a3d16a8abc6.js": "8e2874b14d00d0408cadc6586ec8f7b1f81a8dee",
+    "/chess-peg/manifest.webmanifest": "f4e6ffc37dbb488e503009f1c44d0d61ce6ebf60",
     "/chess-peg/polyfills.6d3b9cbe5ce6ffd6.js": "da57f9c855e0ff26e86a22b979ad67182e154d55",
     "/chess-peg/runtime.fda353acfa0aaad7.js": "0b003dfb147460bd26e3cf05fb76dbbcbf46236d",
-    "/chess-peg/styles.2db5bcc2b79e9ce4.css": "ac1832a34a7ee1a9f9b917cec199b4df0a896474"
+    "/chess-peg/styles.f431507478bc7ec4.css": "b2ef14ee8cd86a8cf470ece2d2e25b8d36b0f337"
   },
   "navigationUrls": [
     {
