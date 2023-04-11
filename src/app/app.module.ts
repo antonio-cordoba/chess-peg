@@ -18,6 +18,9 @@ import { RookComponent } from './components/pieces/rook/rook.component';
 import { PlayBoardComponent } from './components/play-board/play-board.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { GameBoardComponent } from './components/game-board/game-board.component';
+import { MatTabsModule } from '@angular/material/tabs'
 
 @NgModule({
   imports: [ 
@@ -28,6 +31,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatTabsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
@@ -44,7 +49,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BishopComponent,
     KnightComponent,
     RookComponent,
-    PlayBoardComponent
+    PlayBoardComponent,
+    GameBoardComponent
   ],
   providers: [
   ],
