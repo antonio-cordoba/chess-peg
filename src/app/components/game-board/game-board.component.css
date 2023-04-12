@@ -30,6 +30,9 @@
     background-color: #FFF7E2;
     margin: 0 1.5em 1.5em 0;
     padding: 2.5em;
+    font-size: 1.1vmax;
+    max-height: 68vh;
+    overflow-y: scroll;
 }
 
 .game-string-row {
@@ -37,12 +40,13 @@
     align-items: baseline;
     padding: .6em;
     margin: .3em;
+    font-size: 1.5vmax;
 }
 
 .game-string {
     font-family: consolas, Courier New;
     padding: .2em;
-    font-size: 1em;
+    font-size: 1.5vmax;
     margin: 0 .4em;
 }
 
@@ -53,7 +57,7 @@
 .levels {
     margin: 0 .4em;
     padding: .2em;
-    font-size: 1em;
+    font-size: 1.5vmax;
 }
   
 @media (orientation: portrait) {
@@ -69,12 +73,14 @@
     }
 
     .controls {
-        padding: 1.5em 0;
-        flex-direction: row;
+        padding: 1.5em;
         justify-content: center;
     }
 
     .reference {
         margin: 1.5em;
+        max-height: calc(96vh - 100vw - 8em);
+        font-size: .8vmax;
     }
+
 }

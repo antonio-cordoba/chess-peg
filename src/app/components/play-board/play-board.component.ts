@@ -138,7 +138,7 @@ export class PlayBoardComponent implements OnInit {
       angle: 270,
       gravity: 0.5,
       origin: {
-          y: (.15),
+          y: (-0.05),
           x: (.5)
         }
       });
@@ -147,5 +147,4 @@ export class PlayBoardComponent implements OnInit {
   confetti(args: any) {
     return window['confetti'](args);
   }
-
 }
