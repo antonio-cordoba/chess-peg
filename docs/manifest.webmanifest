@@ -1,8 +1,8 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "name": "chess-peg",
   "short_name": "chess-peg",
-  "theme_color": "#1976d2",
+  "theme_color": "#728C98",
   "background_color": "#fafafa",
   "display": "fullscreen",
   "scope": "./",
