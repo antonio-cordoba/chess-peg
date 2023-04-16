@@ -122,6 +122,7 @@ export class GameBoardComponent implements OnInit {
       { levelName: '135 - Medium', gameString: '.N.. .BPB P.N. ....' },
       { levelName: '136 - Medium', gameString: '..N. .B.. PBN. P...' },
       { levelName: '137 - Medium', gameString: '.R.. ..P. ..B. NR.N' },
+      { levelName: '138 - Medium', gameString: 'N.P. ..NP N..R .B..' },
       { levelName: '201 - Hard', gameString: 'B.K. .N.. ..N. PP.B' },
       { levelName: '202 - Hard', gameString: '..P. ..RN ..NP B.B.' },
       { levelName: '203 - Hard', gameString: '...P RKQ. ..B. .RB.' },
