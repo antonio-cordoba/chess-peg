@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1681658971700,
+  "timestamp": 1681659089636,
   "index": "/chess-peg/index.html",
   "assetGroups": [
     {
@@ -58,7 +58,7 @@
     "/chess-peg/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
     "/chess-peg/index.html": "7c1e04409b9568fcbd4328a3bab0a60e88843046",
     "/chess-peg/main.582c8a7bd2643726.js": "ded73d23a91c5c8b459e429725f6b6dbb40c4638",
-    "/chess-peg/manifest.webmanifest": "c90e46f4301a7f074d9aec5cef7af46eb1c852fd",
+    "/chess-peg/manifest.webmanifest": "f0c3eeecfa661e6e1be8323d57b786c380bfc95c",
     "/chess-peg/polyfills.6d3b9cbe5ce6ffd6.js": "da57f9c855e0ff26e86a22b979ad67182e154d55",
     "/chess-peg/runtime.fda353acfa0aaad7.js": "0b003dfb147460bd26e3cf05fb76dbbcbf46236d",
     "/chess-peg/styles.760a20a942950953.css": "30047de275d74588b1f78a6953fd8461f80af7ec"
