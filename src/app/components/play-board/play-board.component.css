@@ -8,6 +8,14 @@
   height: 88vh;
 }
 
+.grid-wrap {
+  position: relative
+}
+
+.cell-grid canvas {
+  position: absolute;
+}
+
 .cell-row {
   display: flex;
   height: 25%

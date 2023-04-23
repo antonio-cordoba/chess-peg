@@ -1,10 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-//import * as confetti from 'canvas-confetti';
+import * as CT from 'js-combinatorics';
+import Sample from '@stdlib/random-sample';
+import  JSConfetti  from 'js-confetti';
+
 
 export interface moveStep {
   row: number;
   col: number;
 }
+
+export interface boardPiece {
+  piece: string;
+  row: number;
+  col: number;
+}
+
+
 
 @Component({
   selector: 'app-play-board',
@@ -16,20 +27,43 @@ export class PlayBoardComponent implements OnInit {
   gameState: string[][] = [];
   _gameString: string = '';
   @Input() set gameString(val: string) {
+    this._gameString = val;
     this.setGameState(val);
+    if (!!val) {
+      // intialize brute force solver:
+      //this.startSolver();
+      // intialize random gen:
+      //this.genSample();
+    }
   };
+
+  get gameString(): string {
+    return this._gameString;
+  }
+
+  boardMaps: boardPiece[][] = [];
+  mapId = 0;
+  moveTracker: any[] = [];
+  solutions: any[] = [];
+  pendingChecks = true;
 
   constructor() {
   }
 
   ngOnInit() {
+    if (!window['js-confetti']) {
+      window['js-confetti'] = new JSConfetti();
+    }
   }
+
+  // Play code...
+  ///////////////////////////////////
 
   setGameState(val: string) {
     this.gameState = []
-    this._gameString = val.split(' ').join('');
+    var gameString = val.split(' ').join('');
     for (let r = 0; r <= 3; r++) {
-      const rowString = this._gameString.substr(r*4, 4);
+      const rowString = gameString.substr(r*4, 4);
       this.gameState[r] = [];
       for (let c = 0; c <= 3; c++) {
         this.gameState[r][c] = rowString.charAt(c);
@@ -47,12 +81,18 @@ export class PlayBoardComponent implements OnInit {
   }
 
   makeMove(from: moveStep, to: moveStep) {
+    if (this.tryStep(from, to) == 1) {
+      this.pop();
+    }
+  }
+
+  tryStep(from: moveStep, to: moveStep) {
     const pieceMoved = this.gameState[from.row][from.col];
     const pieceTaken = this.gameState[to.row][to.col];
+    let piecesLeft = 0;
     if (this.isValidMove(pieceMoved, from, pieceTaken, to)) {
       this.gameState[from.row][from.col] = '.';
       this.gameState[to.row][to.col] = pieceMoved;
-      let piecesLeft = 0;
       for (let r = 0; r <= 3; r++) {
         for (let c = 0; c <= 3; c++) {
             if (this.gameState[r][c] !== '.') {
@@ -60,10 +100,8 @@ export class PlayBoardComponent implements OnInit {
             }
         }
       }
-      if (piecesLeft == 1) {
-        this.pop();
-      }
     }
+    return piecesLeft;
   }
 
   isValidMove(pieceMoved: string, from: moveStep, pieceTaken: string, to: moveStep) {
@@ -131,20 +169,128 @@ export class PlayBoardComponent implements OnInit {
   }
 
   pop () {
-    this.confetti({
-      shapes: ['square'],
-      particleCount: 400,
-      spread: 140,
-      angle: 270,
-      gravity: 0.5,
-      origin: {
-          y: (-0.05),
-          x: (.5)
-        }
-      });
+    //emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸', '💰', '💎', '💵'],
+    //emojis: ['♔', '♕', '♖', '♗', '♘', '♙'],
+    //emojis: ['⚡️', '💥', '🌈'],
+    window['js-confetti'].addConfetti({
+      emojis:['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '⚪', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '🟫'],
+      emojiSize: 12,
+      confettiNumber: 224
+   })
   }
+
+ 
   
-  confetti(args: any) {
-    return window['confetti'](args);
+  // confetti(args: any) {
+  //   return window['confetti'](args);
+  // }
+
+
+// Solve code... (brute force)
+///////////////////////////////////
+  startSolver() {
+    this.pendingChecks = true;
+    this.boardMaps = [];
+    this.moveTracker = [];
+    this.solutions = [];
+    this.crunch(this.boardPieces(), null);
+    this.findSolutions();
+    console.log('~~:', this.gameString);
+    // console.log('~~:', this.boardMaps);
+    // console.log('~~:', this.moveTracker);
+    console.log('~~:', this.solutions);
+
+    this.resetToMap(0);
+  }
+
+  crunch(pieces: boardPiece[], index: number | null) {
+    this.boardMaps.push(pieces);
+    var mapId = this.boardMaps.length -1;
+    this.moveTracker.push(...(this.findMoves(this.boardMaps[mapId]))
+      .map(element => ({...element, result: null, mapId: mapId, prevIndex: index})));
+    do {
+      var safe = 0;
+      var currentIndex = this.moveTracker.findIndex(pair => pair.result === null);
+      var pendingWork = (currentIndex !== -1);
+      if (pendingWork) {
+        var pair = this.moveTracker[currentIndex];
+        //console.log('~~:', this.boardMaps);
+        //console.log('~~:', this.moveTracker);
+        //console.log('~~~:', currentIndex, pair, this.moveTracker[currentIndex]['mapId']);
+  
+        this.resetToMap(pair.mapId);
+        pair.result = this.tryStep(
+          {row: pair[0].row, col: pair[0].col},
+          {row: pair[1].row, col: pair[1].col}
+        );
+        if (pair.result > 1) {
+          this.crunch(this.boardPieces(), currentIndex);
+        }
+      }
+      safe++;
+    } 
+    while (pendingWork || safe === 200);
+    
+  }
+
+  boardPieces() {
+    var result: boardPiece[] = [];
+    for (let r = 0; r <= 3; r++) {
+      for (let c = 0; c <= 3; c++) {
+        if (this.gameState[r][c] !== '.') {
+          result.push({piece: this.gameState[r][c], row: r, col: c});
+        }
+      }
+    }
+    return result;
+  }
+
+  resetToMap(index: number) {
+    this.setGameState('.... .... .... ....');
+    this.boardMaps[index].forEach(chip => 
+      this.gameState[chip.row][chip.col] = chip.piece
+    );
+  }
+
+  findMoves(boardPieces: boardPiece[]) {
+    var it =  new CT.Permutation(boardPieces, 2);
+    return it.toArray();
+  }
+
+  findSolutions() {
+    this.solutions = this.moveTracker
+    .filter(move => move.result === 1)
+    .map(lastMove => [{...lastMove}]);
+    this.solutions
+    .forEach(solution => {
+      do { 
+        solution.unshift(this.moveTracker[solution[0].prevIndex])
+      } while (solution[0].prevIndex !== null)
+    })
+  }
+
+  genSample() {
+    this.setGameState('.... .... .... ....')
+    const allPieces = ['R', 'R', 'B', 'B', 'N', 'N', 'Q', 'K', 'P', 'P', 'P', 'P'];
+    const allSquares = [
+      {row: 0, col: 0}, {row: 0, col: 1}, {row: 0, col: 2}, {row: 0, col: 3},
+      {row: 1, col: 0}, {row: 1, col: 1}, {row: 1, col: 2}, {row: 1, col: 3}, 
+      {row: 2, col: 0}, {row: 2, col: 1}, {row: 2, col: 2}, {row: 2, col: 3}, 
+      {row: 3, col: 0}, {row: 3, col: 1}, {row: 3, col: 2}, {row: 3, col: 3}
+   ];
+    const landing = Sample(allSquares, {'replace': false, 'size': 6});
+    const shuffle = Sample(allPieces, {'replace': false, 'size': 6});
+
+    var newGameMap = shuffle.map((chip, at) => ({piece: chip, row: landing[at].row, col: landing[at].col })); 
+    this.boardMaps = [newGameMap];
+    this.resetToMap(0);
+    console.log('~~:', this.gameState);
+    console.log('~~:', this.getGameString());
+  }
+
+  getGameString() {
+    var result = '';
+    this.gameState.map(row => row.map(cell => result += cell));
+    return result;
   }
 }
