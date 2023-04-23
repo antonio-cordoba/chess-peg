@@ -52,7 +52,8 @@ export class PlayBoardComponent implements OnInit {
 
   ngOnInit() {
     if (!window['js-confetti']) {
-      window['js-confetti'] = new JSConfetti();
+      const canvas = document.getElementById('party') as HTMLCanvasElement;
+      window['js-confetti'] = new JSConfetti({canvas});
     }
   }
 

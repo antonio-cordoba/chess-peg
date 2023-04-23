@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1682220249796,
+  "timestamp": 1682257685768,
   "index": "/chess-peg/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/chess-peg/favicon.ico",
         "/chess-peg/index.html",
-        "/chess-peg/main.b72c2dd0cfc85435.js",
+        "/chess-peg/main.8b4d11980acbce1f.js",
         "/chess-peg/manifest.webmanifest",
         "/chess-peg/polyfills.e4f06115834619ce.js",
         "/chess-peg/runtime.e21dd4d9e7828588.js",
@@ -56,9 +56,9 @@
     "/chess-peg/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/chess-peg/assets/knight.svg": "60812ee886b2b142ee8d06e7aeb2927fad825dc0",
     "/chess-peg/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/chess-peg/index.html": "c9a343183fb8ff9f88079bd8f114cac3bf0cbd03",
-    "/chess-peg/main.b72c2dd0cfc85435.js": "875474dd22d877849b4ddceb34750c5631f59261",
-    "/chess-peg/manifest.webmanifest": "30dcade6af06d8b6695d162d8e9c743a4fe41b97",
+    "/chess-peg/index.html": "64148c672e321927c4c2819148ce845b9ffcce50",
+    "/chess-peg/main.8b4d11980acbce1f.js": "2aacd6b749ed4d0a62131841b5e45ec07e6c7a0c",
+    "/chess-peg/manifest.webmanifest": "a50cbd7c0ed052427a6a395b72e7461aabb639d6",
     "/chess-peg/polyfills.e4f06115834619ce.js": "91d3cce138d8118e51892ea0e868569dff266733",
     "/chess-peg/runtime.e21dd4d9e7828588.js": "7a9173b25a5ac2b781dbf662e2dce64c6814051e",
     "/chess-peg/styles.760a20a942950953.css": "30047de275d74588b1f78a6953fd8461f80af7ec"
