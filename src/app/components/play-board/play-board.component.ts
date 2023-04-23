@@ -46,12 +46,28 @@ export class PlayBoardComponent implements OnInit {
   moveTracker: any[] = [];
   solutions: any[] = [];
   pendingChecks = true;
+  confettiSize = 32;
 
   constructor() {
   }
 
   ngOnInit() {
     if (!window['js-confetti']) {
+
+      const setConfettiSize = (isPortrait: boolean) => this.confettiSize = isPortrait ? 64 : 32;
+
+      // Create the query list.
+      const mediaQueryList = window.matchMedia("(orientation: portrait)");
+      setConfettiSize(mediaQueryList.matches);
+
+      // Define a callback function for the event listener.
+      const handleOrientationChange = (mql: MediaQueryListEvent) => {
+        setConfettiSize(mql.matches);
+      }
+
+      // Add the callback function as a listener to the query list.
+      mediaQueryList.addEventListener("change", handleOrientationChange);
+
       const canvas = document.getElementById('party') as HTMLCanvasElement;
       window['js-confetti'] = new JSConfetti({canvas});
     }
@@ -175,8 +191,8 @@ export class PlayBoardComponent implements OnInit {
     //emojis: ['⚡️', '💥', '🌈'],
     window['js-confetti'].addConfetti({
       emojis:['🔴', '🟠', '🟡', '🟢', '🔵', '🟣', '⚪', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '🟫'],
-      emojiSize: 12,
-      confettiNumber: 224
+      emojiSize: this.confettiSize,
+      confettiNumber: 64
    })
   }
 
